@@ -1,7 +1,9 @@
 name: Publish docker image
+
 on:
-  release:
-    types: [published]
+  push:
+    banches: [ main ]
+
 jobs:
   push_to_repo:
     name: Push Docker images to docker hub
@@ -10,7 +12,7 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@v2
       - name: Push to docker hub
-        uses: docker/build-publish-action@v1
+        uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
