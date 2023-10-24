@@ -12,7 +12,7 @@ RUN pecl install apcu && docker-php-ext-enable apcu
 # Support de redis
 RUN pecl install redis && docker-php-ext-enable redis
 
-# Support de Postgre
+# Support de Postgres
 RUN apt-get update && apt-get install -y libpq-dev && docker-php-ext-install pdo_pgsql
 
 # Imagick
@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y libmagickwand-dev --no-install-recommen
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
 
 # Symfony tool
-RUN wget https://get.symfony.com/cli/installer -O - | bash && mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+RUN wget https://get.symfony.com/cli/installer -O - | bash && mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 
 # Security checker tool
 RUN curl -L https://github.com/fabpot/local-php-security-checker/releases/download/v${PHP_SECURITY_CHECHER_VERSION}/local-php-security-checker_${PHP_SECURITY_CHECHER_VERSION}_linux_$(dpkg --print-architecture) --output /usr/local/bin/local-php-security-checker && \
